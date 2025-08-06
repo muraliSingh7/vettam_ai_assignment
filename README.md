@@ -21,9 +21,9 @@ The editor supports:
 - **State Management**: React Context + hooks (no external libraries)
 
 ---
-## 🎥 Demo
+## 🎥 Demo Video
 Here's a quick look at the editor in action:
-<video src="/public/demo.webm" controls width="100%" />
+[Watch the demo video here]("/public/demo.webm")
 
 ## Features Implemented
 
@@ -74,7 +74,7 @@ Here's a quick look at the editor in action:
 ## 📦 How to Run Locally
 
 ```bash
-git clone <your-repo-url>
+git clone [<your-repo-url>](https://github.com/muraliSingh7/vettam_ai_assignment.git)
 cd tiptap-pagination-editor
 npm install
 npm run dev
