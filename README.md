@@ -23,7 +23,7 @@ The editor supports:
 ---
 ## 🎥 Demo Video
 Here's a quick look at the editor in action:
-[Watch the demo video here]("/public/demo.webm")
+[Watch the demo video here](https://github.com/user-attachments/assets/70343e84-701e-42fd-bef4-dbd2e13a2b28)
 
 ## Features Implemented
 
