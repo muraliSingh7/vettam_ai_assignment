@@ -71,6 +71,43 @@ Here's a quick look at the editor in action:
 
 ---
 
+## High Level Architecture
+```mermaid
+flowchart TD
+    subgraph NextJS_App["Next.js App"]
+        subgraph useDocEditor["useDocEditor Hook"]
+            E[TipTap Editor Instance]
+            C[Characters]
+            P[Pages]
+            CP[Current Page]
+        end
+
+        subgraph ToolbarContext["Toolbar Context"]
+            subgraph usePageToolbar Hook
+                PTS[PageToolbar State:
+                    headerFooterVisible,
+                    marginsVisible,
+                    rulersVisible,
+                    characterCountVisible,
+                    watermarkEnabled,
+                    pageSize,
+                    zoom]
+                PTA[PageToolbar Actions]
+            end
+
+            subgraph useTextToolbar Hook
+                TTA[TextToolbar Actions]
+            end
+        end
+    end
+
+    %% Connections
+    useDocEditor -->|Provides editor| ToolbarContext
+    useDocEditor --> PTS
+    PTS <--> PTA
+    E <--> TTA
+```
+
 ## 📦 How to Run Locally
 
 ```bash
