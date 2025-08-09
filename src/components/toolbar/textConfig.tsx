@@ -22,42 +22,45 @@ import {
   ToolbarButtonConfig,
   AlignmentButtonConfig,
 } from "./types";
-import { TextToolbarActions } from "@/components/toolbar/hooks/useTextToolbar";
+import { TextToolbarActions, TextEditorStateSnapshot } from "@/components/toolbar/hooks/useTextToolbar";
 
 // Configuration for font families
-export const FONT_FAMILIES: FontOption[] = [
-  { value: "Avenir Next", label: "Avenir Next" },
-  { value: "Arial", label: "Arial" },
-  { value: "Times New Roman", label: "Times New Roman" },
-  { value: "Helvetica", label: "Helvetica" },
+export const FONT_FAMILIES = [
+  { label: "Avenir Next", value: '"Avenir Next", sans-serif' },
+  { label: "Arial", value: 'Arial,sans-serif' },
+  { label: "Times New Roman", value: '"Times New Roman", serif' },
+  { label: "Georgia", value: 'Georgia, serif' },
+  { label: "Verdana", value: 'Verdana, sans-serif' },
+  { label: "Courier New", value: '"Courier New", monospace' },
 ];
 
 // Configuration for font sizes
-export const FONT_SIZES = [
-  "10",
-  "12",
-  "14",
-  "16",
-  "18",
-  "20",
-] as const;
+const fontSizes = [10, 12, 14, 16, 18, 20];
+
+export const FONT_SIZES = fontSizes.map((size) => ({
+  label: size.toString(),
+  value: `${size}px`,
+}));
+
 
 export const FONT_STYLES = [
-  "Regular",
-  "Title",
-  "Subtitle",
-  "Body",
-  "Heading 1",
-  "Heading 2",
-  "Heading 3",
-] as const;
+  { label: "Regular", value: "normal" },
+  { label: "Title", value: "text-2xl font-semibold" },
+  { label: "Subtitle", value: "text-xl font-light" },
+  { label: "Body", value: "text-base font-normal" },
+  { label: "Heading 1", value: "text-4xl font-bold" },
+  { label: "Heading 2", value: "text-3xl font-semibold" },
+  { label: "Heading 3", value: "text-2xl font-medium" },
+];
 
 export type ZeroArgActionKeys<T> = {
   [K in keyof T]: T[K] extends () => void ? K : never;
 }[keyof T];
 
 export type ZeroArgTextActions = Pick<TextToolbarActions, ZeroArgActionKeys<TextToolbarActions>>;
-export type ZeroArgTextButtonConfig = ToolbarButtonConfig<keyof ZeroArgTextActions>;
+export type ZeroArgTextButtonConfig = ToolbarButtonConfig<keyof ZeroArgTextActions> & {
+  isActive?: (state: TextEditorStateSnapshot | null) => boolean | undefined
+};
 
 // Configuration for text formatting buttons
 export const TEXT_FORMATTING_BUTTONS: ZeroArgTextButtonConfig[] = [
@@ -66,32 +69,38 @@ export const TEXT_FORMATTING_BUTTONS: ZeroArgTextButtonConfig[] = [
     icon: Bold,
     action: "toggleBold",
     tooltip: "Bold (Ctrl+B)",
+    isActive: (state) => state?.isBold
   },
   {
     key: "italic",
     icon: Italic,
     action: "toggleItalic",
     tooltip: "Italic (Ctrl+I)",
+    isActive: (state) => state?.isItalic
   },
   {
     key: "underline",
     icon: UnderlineIcon,
     action: "toggleUnderline",
     tooltip: "Underline (Ctrl+U)",
+    isActive: (state) => state?.isUnderline,
   },
   {
     key: "strike",
     icon: Strikethrough,
     action: "toggleStrike",
     tooltip: "Strikethrough (Ctrl+Shift+S)",
+    isActive: (state) => state?.isStrike
   },
   {
     key: "link",
     icon: LinkIcon,
     action: "addLink",
     tooltip: "Insert link (Ctrl+K)",
+    isActive: (state) => false,
   },
 ];
+
 
 // Configuration for text style buttons
 export const TEXT_STYLE_BUTTONS: ZeroArgTextButtonConfig[] = [

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 
 interface ToolbarButtonProps {
@@ -14,13 +15,21 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   onClick,
   tooltip,
 }) => (
-  <Button
-    variant={isActive ? "default" : "ghost"}
-    size="icon"
-    onClick={onClick}
-    title={tooltip}
-    className="hover:bg-[#e6dcef] group"
-  >
-    <Icon className="w-4 h-4 text-[#242424] group-hover:!text-[#694c80]" />
-  </Button>
+<Button
+  variant="ghost"
+  size="icon"
+  onClick={onClick}
+  title={tooltip}
+  className={cn(
+    "group",
+    isActive ? "bg-[#e6dcef]" : "hover:bg-[#e6dcef]"
+  )}
+>
+  <Icon
+    className={cn(
+      "w-4 h-4 text-[#242424]",
+      isActive ? "!text-[#694c80]" : "group-hover:!text-[#694c80]"
+    )}
+  />
+</Button>
 );

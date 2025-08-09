@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect } from "react";
 import useTextToolbar, {
+  TextEditorStateSnapshot,
   TextToolbarActions,
-  TextToolbarState,
 } from "@/components/toolbar/hooks/useTextToolbar";
 import usePageToolbar, {
   PagePaddingState,
@@ -9,10 +9,9 @@ import usePageToolbar, {
   PageToolbarState,
 } from "@/components/toolbar/hooks/usePageToolbar";
 import { Editor } from "@tiptap/react";
-import { PAGE_SIZES } from "../pageConfig";
 
 export interface ToolbarContext {
-  textToolbar: TextToolbarState;
+  textToolbar: TextEditorStateSnapshot | null;
   pageToolbar: PageToolbarState;
   pagePadding: PagePaddingState;
   textToolbarActions: TextToolbarActions;
@@ -35,15 +34,15 @@ export const ToolbarProvider = ({
     editor,
   });
 
-  useEffect(() => {
-    if (!editor) return;
+  // useEffect(() => {
+  //   if (!editor) return;
   
-    const el = editor.view.dom as HTMLElement;
-    el.style.fontFamily = textToolbar.fontFamily;
-    el.style.fontSize = `${textToolbar.fontSize}px`;
-    el.style.width = PAGE_SIZES[pageToolbar.pageSize].width;
+  //   const el = editor.view.dom as HTMLElement;
+  //   el.style.fontFamily = textToolbar.fontFamily;
+  //   el.style.fontSize = `${textToolbar.fontSize}px`;
+  //   el.style.width = PAGE_SIZES[pageToolbar.pageSize].width;
 
-  }, [editor, textToolbar.fontFamily, textToolbar.fontSize, pageToolbar.pageSize]);
+  // }, [editor, textToolbar.fontFamily, textToolbar.fontSize, pageToolbar.pageSize]);
   
 
   return (

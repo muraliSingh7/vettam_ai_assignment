@@ -7,27 +7,28 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-interface ToolbarSelectorProps<T, TValue extends string> {
+interface Option {
+  label: string;
+  value: string;
+}
+
+interface ToolbarSelectorProps {
   title: string;
-  value: TValue;
-  onChange: (value: TValue) => void;
-  options: T[];
+  value?: string;
+  onChange: (value: string) => void;
+  options: Option[];
   placeholder: string;
-  getLabel: (item: T) => string;
-  getValue: (item: T) => TValue;
   className?: string;
 }
 
-export const ToolbarSelector = <T, TValue extends string>({
+export const ToolbarSelector = ({
   title,
   value,
   onChange,
   options,
   placeholder,
-  getLabel,
-  getValue,
-  className="",
-}: ToolbarSelectorProps<T, TValue>) => (
+  className = "",
+}: ToolbarSelectorProps) => (
   <Select value={value} onValueChange={onChange}>
     <SelectTrigger
       className={cn("p-1 rounded-none border-none shadow-none max-w-max", className)}
@@ -36,16 +37,11 @@ export const ToolbarSelector = <T, TValue extends string>({
       <SelectValue placeholder={placeholder} />
     </SelectTrigger>
     <SelectContent>
-      {options.map((option) => {
-        const val = getValue(option);
-        const label = getLabel(option);
-
-        return (
-          <SelectItem key={val} value={val}>
-            {label}
-          </SelectItem>
-        );
-      })}
+      {options.map(({ label, value }) => (
+        <SelectItem key={value} value={value}>
+          {label}
+        </SelectItem>
+      ))}
     </SelectContent>
   </Select>
 );

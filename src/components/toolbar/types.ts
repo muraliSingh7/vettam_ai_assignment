@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react";
-import { FONT_SIZES, FONT_STYLES } from "./textConfig";
+import { FONT_FAMILIES, FONT_SIZES, FONT_STYLES } from "./textConfig";
 
 export interface FontOption {
   value: string;
@@ -23,5 +23,6 @@ export interface AlignmentButtonConfig {
 }
 
 export type TextAlignment = "left" | "center" | "right" | "justify";
+export type FontFamily = typeof FONT_FAMILIES[number];
 export type FontSize = typeof FONT_SIZES[number];
 export type FontStyle = typeof FONT_STYLES[number];

@@ -10,7 +10,7 @@ import {
   SidebarGroupLabel,
   SidebarGroupContent,
   SidebarFooter,
-  SidebarTrigger,
+  SidebarTrigger
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -47,7 +47,7 @@ interface AppSidebarTriggerProps {
 }
 export const AppSidebarTrigger: React.FC<AppSidebarTriggerProps> = ({
   isSidebarOpen,
-  logoColor="#FFFFFF",
+  logoColor = "#FFFFFF",
 
 }) => {
   return (
@@ -67,7 +67,7 @@ export const AppSidebarTrigger: React.FC<AppSidebarTriggerProps> = ({
             />
           </svg>
         </div>
-        <span className="text-lg font-medium font-['Avenir_Next']" style={{color: logoColor}}>
+        <span className="text-lg font-medium font-['Avenir_Next']" style={{ color: logoColor }}>
           Vettam.AI
         </span>
       </div>
@@ -82,9 +82,9 @@ const AppSiderbar = () => {
   const [activeToolsIndex, setActiveToolsIndex] = useState<number | null>(null);
 
   return (
-    <Sidebar className="rounded-lg m-4 bg-[#352442] px-1 py-4 h-[calc(100svh-2rem)]">
+    <Sidebar collapsible="offcanvas" className="rounded-tr-lg rounded-br-lg bg-[#352442] px-1 py-4 h-[calc(100svh-2rem)">
       <SidebarHeader className="bg-[#352442] space-y-1.5">
-        <AppSidebarTrigger isSidebarOpen={true} logoColor="#FFFFFF"/>
+        <AppSidebarTrigger isSidebarOpen={true} logoColor="#FFFFFF" />
         <Button className="cursor-pointer w-full px-3 py-1.5 bg-[#e07a53] hover:bg-[#e07a53] rounded-lg text-black font-medium text-sm font-medium font-['Avenir_Next']">
           New Chat
         </Button>
@@ -101,11 +101,10 @@ const AppSiderbar = () => {
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     onClick={() => setActiveFeatureIndex(index)}
-                    className={`text-[#FFFFFF]  text-xs font-medium font-['Avenir_Next'] flex items-center gap-3 p-2 rounded-lg transition-colors ${
-                      index === activeFeatureIndex
+                    className={`text-[#FFFFFF]  text-xs font-medium font-['Avenir_Next'] flex items-center gap-3 p-2 rounded-lg transition-colors ${index === activeFeatureIndex
                         ? "bg-[#FFFFFF] text-slate-800"
                         : "text-[#FFFFFF] cursor-pointer hover:text-slate-800 hover:bg-[#FFFFFF]"
-                    }`}
+                      }`}
                   >
                     <feature.icon className="w-3 h-3" />
                     <span>{feature.label}</span>
@@ -126,11 +125,10 @@ const AppSiderbar = () => {
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     onClick={() => setActiveToolsIndex(index)}
-                    className={`text-[#FFFFFF] text-xs font-medium font-['Avenir_Next'] flex items-center gap-3 p-2 rounded-lg transition-colors ${
-                      activeToolsIndex === index
+                    className={`text-[#FFFFFF] text-xs font-medium font-['Avenir_Next'] flex items-center gap-3 p-2 rounded-lg transition-colors ${activeToolsIndex === index
                         ? "bg-[#FFFFFF] text-slate-800"
                         : "text-[#FFFFFF] cursor-pointer hover:text-slate-800 hover:bg-[#FFFFFF]"
-                    }`}
+                      }`}
                   >
                     <tool.icon className="w-3 h-3" />
                     <span>{tool.label}</span>

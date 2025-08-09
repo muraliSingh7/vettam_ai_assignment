@@ -7,11 +7,17 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Info, MessageSquareText, MoreVertical, SquarePen } from "lucide-react";
+import { AppSidebarTrigger } from "@/components/layout/templates/AppSiderbar";
+import { useSidebar } from "@/components/ui/sidebar";
 
 const Header = () => {
+  const { open } = useSidebar();
   return (
-    <div className="p-3 flex items-center justify-between">
+    <div className="py-3 flex items-center justify-between">
       <div className="flex items-center gap-4">
+      {!open && (
+          <AppSidebarTrigger isSidebarOpen={open} logoColor="#000000" />
+        )}
         <h1 className="justify-start text-[#242424] text-base font-medium font-['Avenir_Next'] leading-normal">
           Olga Tellis v. Bombay Municipal Corporation (1985).docx
         </h1>

@@ -1,6 +1,6 @@
 import React from "react";
 import { ToggleButton } from "../atoms/ToggleButton";
-import { PAGE_SIZES, PageSizeId, zoomOptions } from "../pageConfig";
+import { PAGE_SIZE_OPTIONS, PageSizeId, ZOOM_OPTIONS } from "@/components/toolbar/pageConfig";
 import { Separator } from "@/components/ui/separator";
 import { ToolbarSelector } from "@/components/toolbar/atoms/ToolbarSelector";
 import { Button } from "@/components/ui/button";
@@ -60,11 +60,9 @@ const PageToolbar = () => {
           title="Zoom"
           value={pageToolbar.zoom}
           onChange={(zoom: string) => actions.setZoom(zoom)}
-          options={zoomOptions}
+          options={ZOOM_OPTIONS}
           placeholder="Select a zoom"
           className="font-semibold text-[#523D66]"
-          getLabel={(item) => item}
-          getValue={(item) => item}
         />
       </div>
 
@@ -75,12 +73,10 @@ const PageToolbar = () => {
         <ToolbarSelector
           title="Page Size"
           value={pageToolbar.pageSize}
-          onChange={(pageSizeId: PageSizeId) => actions.setPageSize(pageSizeId)}
-          options={Object.values(PAGE_SIZES)}
+          onChange={(pageSize: string) => actions.setPageSize(pageSize as PageSizeId)}
+          options={PAGE_SIZE_OPTIONS}
           placeholder="Select a page size"
           className="font-semibold text-[#523D66]"
-          getLabel={(item) => item.label}
-          getValue={(item) => item.id}
         />
       </div>
 

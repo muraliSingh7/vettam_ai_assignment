@@ -22,7 +22,7 @@ const DocumentEditor: React.FC = () => {
         <Header />
         <Toolbar />
         {/* Main content area */}
-        <div className="flex max-h-[85dvh] ">
+        <div className="flex max-h-[85dvh]">
           <Ruler>
             <div className="mx-auto flex flex-col bg-[#f2f2f7] "> 
               <EditorContent ref={editorRef} editor={editor} />

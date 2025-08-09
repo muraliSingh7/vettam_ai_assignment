@@ -20,19 +20,16 @@ import { useToolbar } from "../contexts/toolbar";
 
 export const TextToolbar = () => {
   const { textToolbar, textToolbarActions: actions } = useToolbar();
-
-
+  console.log(textToolbar?.fontSize);
   return (
     <div className="flex items-center flex-wrap bg-[#f2edf7] px-2 py-1 gap-2 w-full">
       {/* Font Family Selector */}
       <ToolbarSelector
         title="font-family"
-        value={textToolbar.fontFamily}
+        value={textToolbar?.fontFamily}
         onChange={actions.setFontFamily}
         options={FONT_FAMILIES}
         placeholder="Select font"
-        getLabel={(item) => item.label}
-        getValue={(item) => item.value}
       />
 
       <Separator orientation="vertical" className="!h-9 bg-[#bbb9bd]" />
@@ -40,12 +37,10 @@ export const TextToolbar = () => {
       {/* Font Weight Selector */}
       <ToolbarSelector
         title="font-style"
-        value={textToolbar.fontStyle}
+        value={textToolbar?.fontStyle}
         onChange={actions.setFontStyle}
-        options={[...FONT_STYLES]}
+        options={FONT_STYLES}
         placeholder="Select style"
-        getLabel={(item) => item}
-        getValue={(item) => item}
       />
 
       <Separator orientation="vertical" className="!h-9 bg-[#bbb9bd]" />
@@ -53,12 +48,10 @@ export const TextToolbar = () => {
       {/* Font Size Selector */}
       <ToolbarSelector
         title="font-size"
-        value={textToolbar.fontSize}
+        value={textToolbar?.fontSize}
         onChange={actions.setFontSize}
-        options={[...FONT_SIZES]}
+        options={FONT_SIZES}
         placeholder="Size"
-        getLabel={(item) => item}
-        getValue={(item) => item}
       />
 
       <Separator orientation="vertical" className="!h-9 bg-[#bbb9bd]" />
@@ -68,6 +61,7 @@ export const TextToolbar = () => {
         <ToolbarButtonGroup
           buttons={TEXT_FORMATTING_BUTTONS}
           actions={actions}
+          state={textToolbar}
         />
       </div>
 
@@ -78,6 +72,7 @@ export const TextToolbar = () => {
         <ToolbarButtonGroup
           buttons={TEXT_STYLE_BUTTONS}
           actions={actions}
+          state={textToolbar}
         />
       </div>
 
@@ -105,6 +100,7 @@ export const TextToolbar = () => {
       <ToolbarButtonGroup
         buttons={SCRIPT_BUTTONS}
         actions={actions}
+        state={textToolbar}
       />
 
       <Separator orientation="vertical" className="!h-9 bg-[#bbb9bd]" />
@@ -113,6 +109,7 @@ export const TextToolbar = () => {
       <ToolbarButtonGroup
         buttons={SPACING_BUTTONS}
         actions={actions}
+        state={textToolbar}
       />
 
       <Separator orientation="vertical" className="!h-9 bg-[#bbb9bd]" />
@@ -121,6 +118,7 @@ export const TextToolbar = () => {
       <ToolbarButtonGroup
         buttons={INSERT_BUTTONS}
         actions={actions}
+        state={textToolbar}
       />
     </div>
   );

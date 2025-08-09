@@ -67,7 +67,7 @@ export const PageBlock = Node.create({
         "data-type": "pageBlock",
         "data-page-index": pageIndex,
         style: `width: ${pageWidth};`,
-        class: "relative",
+        class: "relative break-inside-avoid print:break-before-page mx-auto",
       },
       [
         "div",
@@ -81,7 +81,7 @@ export const PageBlock = Node.create({
         "div",
         {
           style: `height: ${pageBreakHeight};`,
-          class: "bg-[#f2f2f7] w-full",
+          class: "bg-[#f2f2f7] w-full h-3 print:hidden print:h-0",
         },
       ],
     ];

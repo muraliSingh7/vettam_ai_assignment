@@ -9,6 +9,7 @@ import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import { useCallback, useState } from "react";
 import { Node } from "prosemirror-model";
+import { Style } from "@/components/extensions/Style";
 
 export interface DocStats {
   totalCharacters: number;
@@ -26,7 +27,6 @@ const useDocEditor = () => {
   });
 
   const goToPage = useCallback((pageNumber: number) => {
-    console.log("goToPage", pageNumber);
     const el = document.querySelector(`[data-page-index="${pageNumber}"]`);
     if (el) {
         console.log("el", el, pageNumber);
@@ -43,6 +43,7 @@ const useDocEditor = () => {
       TiptapHeader,
       TiptapFooter,
       PageBlock,
+      Style,
       Watermark,
       Link.configure({
         openOnClick: false,
@@ -69,8 +70,8 @@ const useDocEditor = () => {
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm max-w-none focus:outline-none bg-white shadow-sm mx-auto box-border",
-        style: `font-family: 'Avenir Next', sans-serif; font-size: 12px; width: 100%;`,
+          "prose prose-sm max-w-none focus:outline-none bg-[#f2f2f7] mx-auto box-border w-full text-xs",
+        style: `font-family: 'Avenir Next', sans-serif;`,
       },
     },
     onUpdate: ({ editor }) => {
